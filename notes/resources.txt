@@ -24,7 +24,7 @@
   https://medium.com/@n0tty/tracking-any-user-location-with-ip-address-using-google-api-9b58d8c62f89
   https://geo.ipify.org/docs
 
-  https://www.icloud.com/calendar/
-https://stackoverflow.com/questions/56723852/console-select-menu-in-python
+  https://www.icloud.com/calendar/ -------------> clandendario de fechas de 6xargs
+  https://stackoverflow.com/questions/56723852/console-select-menu-in-python
   https://stackoverflow.com/questions/63580147/how-would-i-send-a-python-variable-over-a-webhook
   https://www.reddit.com/r/NoStupidQuestions/comments/mwo16s/how_to_send_info_of_a_variable_to_a_discord/?rdt=57977
