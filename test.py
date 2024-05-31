@@ -3,9 +3,10 @@ import keyboard
 from colorama import Fore, Style, init
 import sys
 import time
+import socket
+import requests
 
 init(autoreset=True)
-
 def display_banner():
     print(Fore.RED + '''   
 ███████╗██╗ ██████╗ ██████╗  ██████╗ ██╗      ██████╗  ██████╗ █████╗ ████████╗███████╗
@@ -31,7 +32,7 @@ def divide(a, b):
     if b != 0:
         return a / b
     else:
-        return "Error: Division by zero"
+        return "Please, choose a valid option"
 
 def handle_option(stdscr, option):
     stdscr.clear()
@@ -53,14 +54,14 @@ def handle_option(stdscr, option):
     time.sleep(1)
 
 def main(stdscr):
-    curses.curs_set(0)  # Hide cursor
+    curses.curs_set(0)  
     stdscr.clear()
-    stdscr.addstr(0, 0, "Welcome to the Menu! Press Enter to select, or Esc to exit.")
-    stdscr.addstr(1, 0, "1. Add")
-    stdscr.addstr(2, 0, "2. Subtract")
-    stdscr.addstr(3, 0, "3. Multiply")
-    stdscr.addstr(4, 0, "4. Exit")
-    stdscr.addstr(5, 0, "5. Go back to the main menu")
+    stdscr.addstr(0, 0, "☁ Press enter to select, or Esc to exit. ☁")
+    stdscr.addstr(1, 0, "[01] ==> Substract the ip using the default ip-grabber redirection")
+    stdscr.addstr(2, 0, "[02] ==> Retrieve the google maps location from an specific public ip address")
+    stdscr.addstr(3, 0, "[03] ==> Substract the coordinates from an specific ip address")
+    stdscr.addstr(4, 0, "[04] ==> Exit")
+    stdscr.addstr(5, 0, "[05] ==> Go back to the main menu")
     stdscr.refresh()
 
     option = 1
@@ -74,9 +75,9 @@ def main(stdscr):
             stdscr.addstr(0, 0, "Scrolling")
             if animate:
                 stdscr.addstr(0, 9, "...")
-            stdscr.addstr(1, 0, "Selected option: " + str(option))
+            stdscr.addstr(1, 0, "Selected option ==> " + str(option))
             stdscr.refresh()
-            time.sleep(0.2)  # Wait for 0.2 seconds for animation
+            time.sleep(0.2)  
             animate = not animate
 
         elif key == curses.KEY_UP:
@@ -85,9 +86,9 @@ def main(stdscr):
             stdscr.addstr(0, 0, "Scrolling")
             if animate:
                 stdscr.addstr(0, 9, "...")
-            stdscr.addstr(1, 0, "Selected option: " + str(option))
+            stdscr.addstr(1, 0, "Selected option ==> " + str(option))
             stdscr.refresh()
-            time.sleep(0.2)  # Wait for 0.2 seconds for animation
+            time.sleep(0.2)  
             animate = not animate
 
         elif key == curses.KEY_ENTER or key in [10, 13]:
@@ -100,21 +101,20 @@ def main(stdscr):
                 stdscr.refresh()
                 time.sleep(1)
                 stdscr.clear()
-                stdscr.addstr(0, 0, "Welcome to the Menu! Press Enter to select, or Esc to exit.")
-                stdscr.addstr(1, 0, "1. Add")
-                stdscr.addstr(2, 0, "2. Subtract")
-                stdscr.addstr(3, 0, "3. Multiply")
-                stdscr.addstr(4, 0, "4. Exit")
-                stdscr.addstr(5, 0, "5. Go back to the main menu")
+                stdscr.addstr(0, 0, "☁ Press enter to select, or Esc to exit. ☁")
+                stdscr.addstr(1, 0, "[01] ==> Substract the ip using the default ip-grabber redirection")
+                stdscr.addstr(2, 0, "[02] ==> Retrieve the google maps location from an specific public ip address")
+                stdscr.addstr(3, 0, "[03] ==> Substract the coordinates from an specific ip address")
+                stdscr.addstr(4, 0, "[04] ==> Exit")
+                stdscr.addstr(5, 0, "[05] ==> Go back to the main menu")
                 stdscr.refresh()
                 option = 1
 
-        elif key == 27:  # ESC key
+        elif key == 27: 
             stdscr.clear()
             stdscr.addstr(0, 0, "Exiting...")
             stdscr.refresh()
-            time.sleep(1)  # Sleep for 1 second for animation
-            break
+            time.sleep(1)  
 
 if __name__ == "__main__":
     display_banner()
