@@ -1,2 +1,2 @@
 # fig2glocate
-some google api stuff
+Playing with the ipinfo api and google maps
