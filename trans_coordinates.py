@@ -4,6 +4,21 @@ import ipaddress
 
 init(autoreset=True)
 
+def display_banner():
+    print(Fore.RED + '''   
+███████╗██╗ ██████╗ ██████╗  ██████╗ ██╗      ██████╗  ██████╗ █████╗ ████████╗███████╗
+██╔════╝██║██╔════╝ ╚════██╗██╔════╝ ██║     ██╔═══██╗██╔════╝██╔══██╗╚══██╔══╝██╔════╝
+█████╗  ██║██║  ███╗ █████╔╝██║  ███╗██║     ██║   ██║██║     ███████║   ██║   █████╗  
+██╔══╝  ██║██║   ██║██╔═══╝ ██║   ██║██║     ██║   ██║██║     ██╔══██║   ██║   ██╔══╝  
+██║     ██║╚██████╔╝███████╗╚██████╔╝███████╗╚██████╔╝╚██████╗██║  ██║   ██║   ███████╗
+╚═╝     ╚═╝ ╚═════╝ ╚══════╝ ╚═════╝ ╚══════╝ ╚═════╝  ╚═════╝╚═╝  ╚═╝   ╚═╝   ╚══════╝                                                                      
+ Author: r3vskd                
+ Warning: It was created for educational purposes. Please don't misuse it for illegal activities. 
+          ''' + Style.RESET_ALL)
+
+###################### Aqui va tu api key que debes crear en https://ipinfo.io/ ##########################
+api_key = '0b402b1742cfb1'
+
 def get_ip_info(ip_address, api_key):
     url = f"https://ipinfo.io/{ip_address}/json?token={api_key}"
     response = requests.get(url)
@@ -16,43 +31,64 @@ def generate_google_maps_url(latitude, longitude):
     return f"https://www.google.com/maps?q={latitude},{longitude}"
 
 def is_public_ip(ip):
-    # Funfion para convertir el valor string en formato IPv4 valido
+    # Convert the string to an IPv4Address object
     ip_addr = ipaddress.ip_address(ip)
     
-    # Definiendo los rangos de direcciones ip
+    # Define private IP ranges
     private_ranges = [
         ipaddress.ip_network('10.0.0.0/8'),
         ipaddress.ip_network('172.16.0.0/12'),
         ipaddress.ip_network('192.168.0.0/16')
     ]
     
-    # Checar si la direccion ip esta en alguno de los rangos de direcciones privadas
+    # Check if the IP address is in any of the private ranges
     for private_range in private_ranges:
         if ip_addr in private_range:
             return False
     return True
 
 def main():
-    ip_address = input("Ingresa la direccion ip: ")
-    if is_public_ip(ip_address):
-        print(f"{ip_address} is a valid ip address")
+    print(Fore.GREEN + '''
+           [01] ===> Retrieve the google maps url from a public IP address
+           [02] ===> Retrieve the country/province/city from a public IP address 
+           [03] ===> Retrieve the coordinates from a public IP address
+           [04] ===> Exit
+           ''' + Style.RESET_ALL)
+    
+    option = input(Fore.GREEN + '''Select an option: ''' + Style.RESET_ALL)
+    
+    if option == '1' or option == '2' or option == '3':
+        ip_address = input(Fore.GREEN + '''Enter a public IP address: ''' + Style.RESET_ALL)
+        if not is_public_ip(ip_address):
+            print(f"{ip_address} isn't a valid public IP address. Please enter a valid public IP address.")
+            return
+    
+        try:
+            ip_info = get_ip_info(ip_address, api_key)
+            if option == '1':
+                location = ip_info.get('loc')
+                if location:
+                    latitude, longitude = location.split(',')
+                    google_maps_url = generate_google_maps_url(latitude, longitude)
+                    print(Fore.GREEN + "En ciudades y áreas densamente pobladas, la precisión de las coordenadas puede verse algo afectada, en un radio de 3 a 20 km como máximo." + Style.RESET_ALL)
+                    print(f"Google Maps URL: {google_maps_url}")
+                else:
+                    print("Location information not available for this IP address.")
+            elif option == '2':
+                print(f"Country: {ip_info.get('country')}, Region: {ip_info.get('region')}, City: {ip_info.get('city')}")
+            elif option == '3':
+                location = ip_info.get('loc')
+                if location:
+                    print(f"Coordinates: {location}")
+                else:
+                    print("Location information not available for this IP address.")
+        except Exception as e:
+            print(str(e))
+    elif option == '4':
+        print("Exiting...")
     else:
-        print(f"{ip_address} is not a public IP address, Please enter a valid public ip address.")
-        
-    api_key = '0b402b1742cfb1' ###################### Aqui vas tu api key que debes crear en https://ipinfo.io/ ##########################
-
-    try:
-        ip_info = get_ip_info(ip_address, api_key)
-        location = ip_info.get('loc')
-        if location:
-            latitude, longitude = location.split(',')
-            google_maps_url = generate_google_maps_url(latitude, longitude)
-            print(Fore.GREEN +"En ciudades y areas densamente pobladas, la precision de las coordenadas puede verse algo afectada, en un radio de 3 a 20 km como maximo."+ Style.RESET_ALL)
-            print(f"Google Maps URL: {google_maps_url}") 
-        else:
-            print("Location information not available for this IP address.")
-    except Exception as e:
-        print(str(e))
+        print("Error: Invalid option. Please enter a number between 1 and 4.")
 
 if __name__ == "__main__":
+    display_banner()
     main()
