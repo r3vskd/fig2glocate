@@ -17,7 +17,7 @@ def display_banner():
           ''' + Style.RESET_ALL)
 
 ###################### Aqui va tu api key que debes crear en https://ipinfo.io/ ##########################
-api_key = '0b402b1742cfb1'
+api_key = 'your_api_key'
 
 def get_ip_info(ip_address, api_key):
     url = f"https://ipinfo.io/{ip_address}/json?token={api_key}"
