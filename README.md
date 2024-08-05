@@ -2,7 +2,7 @@
 
 <img src = 'https://github.com/r3vskd/fig2glocate/blob/main/resources/Screenshot_1.png'></img>
 
-:warning: This tool is only for educational purposes, use this responsibly :warning:
+:warning: This tool is only for educational purposes, use this responsibly. :warning:
 
 ## FIG2GLOCATE
 This Python tool retrieves geographical information about a public IP address using the IPinfo API. It offers three main functionalities:
