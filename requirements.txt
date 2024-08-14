@@ -1,1 +1,1 @@
-keyboard
+pip install keyboard
