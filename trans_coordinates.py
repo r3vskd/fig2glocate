@@ -41,7 +41,7 @@ def is_public_ip(ip):
         ipaddress.ip_network('192.168.0.0/16')
     ]
     
-    # Checar si la direccion ip esta en algunos de los rangos de direcciones privadas
+    ## Checar si la direccion ip esta en algunos de los rangos de direcciones privadas
     for private_range in private_ranges:
         if ip_addr in private_range:
             return False
