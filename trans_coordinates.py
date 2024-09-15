@@ -16,7 +16,7 @@ def display_banner():
  Warning: It was created for educational purposes. Please don't misuse it for illegal activities. 
           ''' + Style.RESET_ALL)
 
-########################## aqui va tu api key que debes crear en https://ipinfo.io/ ##########################
+############## aqui va tu api key que debes crear en https://ipinfo.io/ ##########################
 api_key = 'your_api_key'
 
 def get_ip_info(ip_address, api_key):
