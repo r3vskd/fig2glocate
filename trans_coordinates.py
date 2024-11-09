@@ -12,7 +12,7 @@ def display_banner():
 ██╔══╝  ██║██║   ██║██╔═══╝ ██║   ██║██║     ██║   ██║██║     ██╔══██║   ██║   ██╔══╝  
 ██║     ██║╚██████╔╝███████╗╚██████╔╝███████╗╚██████╔╝╚██████╗██║  ██║   ██║   ███████╗
 ╚═╝     ╚═╝ ╚═════╝ ╚══════╝ ╚═════╝ ╚══════╝ ╚═════╝  ╚═════╝╚═╝  ╚═╝   ╚═╝   ╚══════╝                                                                      
- Author: r3vskd                
+ author: r3vskd                
  Warning: It was created for educational purposes. Please don't misuse it for illegal activities. 
           ''' + Style.RESET_ALL)
 
